@@ -203,10 +203,10 @@ TEST(time_optimal_trajectory_generation, testLargeAccel)
   std::list<Eigen::VectorXd> waypoints;
   Eigen::VectorXd max_velocities(6);
   Eigen::VectorXd max_accelerations(6);
-  //  waypoint << 1.6113056281076339, -0.21400163389235427, -1.974502599739185, 9.9653618690354051e-12,
-  //  -1.3810916877429624,
-  //      1.5293902838041467;
-  //  waypoints.push_back(waypoint);
+    waypoint << 1.6113056281076339, -0.21400163389235427, -1.974502599739185, 9.9653618690354051e-12,
+    -1.3810916877429624,
+        1.5293902838041467;
+    waypoints.push_back(waypoint);
   waypoint << 1.6088016187976597, -0.21792862470933924, -1.9758628799742952, 0.00010424017303217738,
       -1.3835690515335755, 1.5279972853269816;
   waypoints.push_back(waypoint);
