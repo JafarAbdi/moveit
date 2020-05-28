@@ -196,6 +196,77 @@ configure_file("version/version.h.in" "${VERSION_FILE_PATH}/moveit/version.h")
 #catkin_lint: ignore_once external_file
 install(FILES "${VERSION_FILE_PATH}/moveit/version.h" DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}/moveit)
 
+set(MOVEIT_LIB_NAME moveit_core)
+
+add_library(${MOVEIT_LIB_NAME}
+    exceptions/src/exceptions.cpp
+    profiler/src/profiler.cpp
+    background_processing/src/background_processing.cpp
+    utils/src/lexical_casts.cpp
+    utils/src/xmlrpc_casts.cpp
+    utils/src/message_checks.cpp
+    kinematics_base/src/kinematics_base.cpp
+    robot_model/src/aabb.cpp
+    robot_model/src/fixed_joint_model.cpp
+    robot_model/src/floating_joint_model.cpp
+    robot_model/src/joint_model.cpp
+    robot_model/src/joint_model_group.cpp
+    robot_model/src/link_model.cpp
+    robot_model/src/planar_joint_model.cpp
+    robot_model/src/prismatic_joint_model.cpp
+    robot_model/src/revolute_joint_model.cpp
+    robot_model/src/robot_model.cpp
+    transforms/src/transforms.cpp
+    robot_state/src/attached_body.cpp
+    robot_state/src/conversions.cpp
+    robot_state/src/robot_state.cpp
+    robot_state/src/cartesian_interpolator.cpp
+    robot_trajectory/src/robot_trajectory.cpp
+    collision_detection/src/allvalid/collision_env_allvalid.cpp
+    collision_detection/src/collision_matrix.cpp
+    collision_detection/src/collision_octomap_filter.cpp
+    collision_detection/src/collision_tools.cpp
+    collision_detection/src/world.cpp
+    collision_detection/src/world_diff.cpp
+    collision_detection/src/collision_env.cpp
+    collision_detection_fcl/src/collision_common.cpp
+    collision_detection_fcl/src/collision_env_fcl.cpp
+    collision_detection_fcl/src/collision_detector_fcl_plugin_loader.cpp
+    kinematic_constraints/src/kinematic_constraint.cpp
+    kinematic_constraints/src/utils.cpp
+    planning_scene/src/planning_scene.cpp
+    constraint_samplers/src/constraint_sampler.cpp
+    constraint_samplers/src/constraint_sampler_manager.cpp
+    constraint_samplers/src/constraint_sampler_tools.cpp
+    constraint_samplers/src/default_constraint_samplers.cpp
+    constraint_samplers/src/union_constraint_sampler.cpp
+    planning_interface/src/planning_interface.cpp
+    planning_interface/src/planning_response.cpp
+    planning_request_adapter/src/planning_request_adapter.cpp
+    trajectory_processing/src/iterative_time_parameterization.cpp
+    trajectory_processing/src/iterative_spline_parameterization.cpp
+    trajectory_processing/src/trajectory_tools.cpp
+    trajectory_processing/src/time_optimal_trajectory_generation.cpp
+    distance_field/src/distance_field.cpp
+    distance_field/src/find_internal_points.cpp
+    distance_field/src/propagation_distance_field.cpp
+    collision_distance_field/src/collision_distance_field_types.cpp
+    collision_distance_field/src/collision_common_distance_field.cpp
+    collision_distance_field/src/collision_env_distance_field.cpp
+    collision_distance_field/src/collision_env_hybrid.cpp
+    kinematics_metrics/src/kinematics_metrics.cpp
+    dynamics_solver/src/dynamics_solver.cpp
+)
+
+set_target_properties(${MOVEIT_LIB_NAME} PROPERTIES VERSION "${${PROJECT_NAME}_VERSION}")
+
+target_link_libraries(${MOVEIT_LIB_NAME} ${catkin_LIBRARIES} ${urdfdom_LIBRARIES} ${urdfdom_headers_LIBRARIES} ${Boost_LIBRARIES})
+
+install(TARGETS ${MOVEIT_LIB_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
+
 add_subdirectory(version)
 add_subdirectory(macros)
 add_subdirectory(backtrace)

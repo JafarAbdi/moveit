@@ -1,27 +1,3 @@
-set(MOVEIT_LIB_NAME moveit_constraint_samplers)
-
-add_library(${MOVEIT_LIB_NAME}
-  src/constraint_sampler.cpp
-  src/constraint_sampler_manager.cpp
-  src/constraint_sampler_tools.cpp
-  src/default_constraint_samplers.cpp
-  src/union_constraint_sampler.cpp
-)
-set_target_properties(${MOVEIT_LIB_NAME} PROPERTIES VERSION "${${PROJECT_NAME}_VERSION}")
-
-target_link_libraries(${MOVEIT_LIB_NAME}
-  moveit_robot_state
-  moveit_kinematic_constraints
-  moveit_kinematics_base
-  moveit_planning_scene
-  ${catkin_LIBRARIES} ${urdfdom_LIBRARIES} ${urdfdom_headers_LIBRARIES} ${Boost_LIBRARIES})
-add_dependencies(${MOVEIT_LIB_NAME} ${catkin_EXPORTED_TARGETS})
-
-install(TARGETS ${MOVEIT_LIB_NAME}
-        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
-
 install(DIRECTORY include/ DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION})
 
 if(CATKIN_ENABLE_TESTING)
